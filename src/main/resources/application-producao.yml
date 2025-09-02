@@ -1,0 +1,55 @@
+spring:
+
+  redis:
+    host: host.docker.internal
+    port: 6379
+
+  flyway:
+    baselineOnMigrate: true
+    enabled: true
+    schemas:
+    - migrations
+    
+  jpa:
+    defer-datasource-initialization: false
+    properties:
+      hibernate: 
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        dialect: org.hibernate.dialect.SQLServerDialect.
+        show-sql: false
+        
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB
+      max-file-size: 200MB
+      max-request-size: 215MB
+                
+     
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+    servlet:
+      path: /apicr7imports
+
+## Actuator
+management:
+   endpoints:
+     web:
+       exposure:
+         include: 'health,prometheus'
+   endpoint:
+      health:
+        enabled: true
+        show-details: always
+      prometheus:
+        enabled: true				
+
+## Token valido por 1h  
+security:
+         jwt:
+           token:
+               expire_length: 3600000
+               secret_key: secret    
