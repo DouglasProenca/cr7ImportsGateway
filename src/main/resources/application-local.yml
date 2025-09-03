@@ -1,5 +1,11 @@
 spring:
 
+  cloud:
+     gateway:
+       discovery:
+         locator:
+            enabled: true  
+
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/Cr7Imports?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
@@ -8,7 +14,7 @@ spring:
 
   redis:
     host: localhost
-    port: 6379
+    port: 6379 
     password: password
     
   jpa:
@@ -21,19 +27,10 @@ spring:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
         dialect: org.hibernate.dialect.SQLServerDialect.
         show-sql: false
-        
-  servlet:
-    multipart:
-      enabled: true
-      file-size-threshold: 2KB
-      max-file-size: 200MB
-      max-request-size: 215MB
-                
-  mvc:
-    pathmatch:
-      matching-strategy: ANT_PATH_MATCHER
-    servlet:
-      path: /apicr7imports
+
+server:
+   host: localhost
+   port: 8888	
 
 ## Actuator
 management:
@@ -52,8 +49,7 @@ management:
 security:
          jwt:
            token:
-               expire_length: 3600000
-               secret_key: secret    
+               secret_key: secretGrandeParaQueOGatewayPossaAceitar
 
 ## Swagger
 springdoc:
@@ -61,17 +57,19 @@ springdoc:
       tags-sorter: alpha
       operations-sorter: alpha	
 
-## Mail
-mail:
-  config:
-     port: 587
-     host: smtp.gmail.com
-     transport:
-         protocol: smtp
-     properties:
-             mail:
-               smtp:
-               auth: true  
-               starttls:
-                 enable: true
-     debug: false						 
+eureka:
+   instance:
+      prefer-ip-address: true
+
+## Application settings
+settings:
+# Address configuration
+    allow-origin: '*'
+
+## Logging level can be one of TRACE, DEBUG, INFO, WARN, ERROR, FATAL, OFF.			
+logging:
+    level:
+      root: INFO
+      com.sistema.cr7ImportsGateway: DEBUG
+      io.swagger.models.parameters.AbstractSerializableParameter: DEBUG
+      org.hibernate.SQL: DEBUG							 
