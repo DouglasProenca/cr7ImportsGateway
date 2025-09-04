@@ -5,12 +5,11 @@ import org.springframework.context.annotation.Configuration;
 
 import lombok.Data;
 
-@Configuration
 @Data
+@Configuration
 @ConfigurationProperties(prefix = "security.jwt.token")
 public class SecurityJwtConfigProperties {
 
-    Integer expire_length;
 	String secret_key;
 		
 }
