@@ -1,0 +1,27 @@
+## Configuração Default da Aplicação ##
+spring:
+  application:
+    name: gateway
+  ## Spring Config Server Cloud
+  cloud:
+    config:
+      fail-fast: true
+
+---
+## Ambiente Default do Config Server (Ambientes com Docker Compose)
+spring:
+  cloud:
+    config:
+      uri: http://configserver:8889
+      enabled: true
+
+---
+## Ambiente Local do Config Server
+spring:
+  config:
+    activate:
+      on-profile: "local"
+  cloud:
+    config:
+      uri: http://localhost:8889
+      enabled: false
