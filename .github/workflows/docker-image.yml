@@ -23,7 +23,6 @@ jobs:
       uses: docker/setup-buildx-action@v2
 
     - name: Build Application JAR
-      working-directory: cr7ImportsGateway
       run: mvn clean package -DskipTests
 
     - name: Build and push multi-arch Docker Image
