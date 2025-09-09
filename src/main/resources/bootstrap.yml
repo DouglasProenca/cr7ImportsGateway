@@ -12,7 +12,7 @@ spring:
 spring:
   cloud:
     config:
-      uri: http://configserver:8889
+      uri: http://cr7Configserver:8889
       enabled: true
 
 ---
