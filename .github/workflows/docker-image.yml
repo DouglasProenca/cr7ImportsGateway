@@ -32,4 +32,4 @@ jobs:
           -t ${{ secrets.DOCKER_USERNAME }}/cr7-imports-gateway:latest \
           -t ${{ secrets.DOCKER_USERNAME }}/cr7-imports-gateway:${{ github.run_id }} \
           --push \
-          -f Cr7ImportsGateway/Dockerfile Cr7ImportsGateway
+          -f cr7ImportsGateway/Dockerfile cr7ImportsGateway
