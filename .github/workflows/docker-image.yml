@@ -24,7 +24,7 @@ jobs:
 
     - name: Get POM version
       id: pom-version
-      uses: CptMokoena/maven-get-version-action@master
+      uses: CptMokoena/maven-get-version-action@main
 
     - name: Build Application JAR
       run: mvn clean package -DskipTests
