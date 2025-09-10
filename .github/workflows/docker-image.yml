@@ -22,11 +22,9 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
 
-    - name: Get version from pom.xml
-      id: project
-      run: |
-        VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
-        echo "version=$VERSION" >> $GITHUB_OUTPUT
+    - name: Get POM version
+      id: pom-version
+      uses: CptMokoena/maven-get-version-action@master
 
     - name: Build Application JAR
       run: mvn clean package -DskipTests
@@ -37,6 +35,6 @@ jobs:
         # -t ${{ secrets.DOCKER_USERNAME }}/cr7-imports-gateway:${{ github.run_id }} \
         docker buildx build --platform linux/amd64,linux/arm64 \
           -t ${{ secrets.DOCKER_USERNAME }}/cr7-imports-gateway:latest \
-          -t ${{ secrets.DOCKER_USERNAME }}/cr7-imports-gateway:$VERSION \
+          -t ${{ secrets.DOCKER_USERNAME }}/cr7-imports-gateway:${{ steps.pom-version.outputs.version }} \
           --push \
           -f Dockerfile .
