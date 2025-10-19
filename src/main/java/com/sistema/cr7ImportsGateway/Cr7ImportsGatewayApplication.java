@@ -36,7 +36,7 @@ public class Cr7ImportsGatewayApplication {
 			    .route("apicr7imports", r -> r
 			        .path("/apicr7imports/**")
 			        .filters(f -> f.filter(filter)) 
-			        .uri("http://localhost:8080"))   
+			        .uri("lb://cr7imports"))   
 			    .build();
 	}
 	
