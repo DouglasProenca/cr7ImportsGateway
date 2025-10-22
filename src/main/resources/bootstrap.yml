@@ -1,7 +1,7 @@
 ## Configuração Default da Aplicação ##
 spring:
   application:
-    name: gateway
+    name: cr7Gateway
   ## Spring Config Server Cloud
   cloud:
     config:
