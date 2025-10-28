@@ -49,13 +49,13 @@ public class JwtTokenFilter implements GatewayFilter, Ordered {
 			}
 
 			final String token = exchange.getRequest().getHeaders().getOrEmpty(AUTHORIZATION_HEADER).get(0).replace("Bearer ", "");
-			System.out.println(token);
 			
 			try {
 				jwtTokenProvider.isValid(token);
 			} catch (Exception e) {
 				ServerHttpResponse response = exchange.getResponse();
 				response.setStatusCode(HttpStatus.UNAUTHORIZED);
+				System.out.println(token);
 				return response.setComplete();
 			}
 			exchange.getRequest().mutate().header("LOGGED_USER_IDENTIFIER", jwtTokenProvider.getIdentifierFromToken(token)).build();
