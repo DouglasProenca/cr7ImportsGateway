@@ -55,7 +55,6 @@ public class JwtTokenFilter implements GatewayFilter, Ordered {
 			} catch (Exception e) {
 				ServerHttpResponse response = exchange.getResponse();
 				response.setStatusCode(HttpStatus.UNAUTHORIZED);
-				System.out.println(token);
 				return response.setComplete();
 			}
 			exchange.getRequest().mutate().header("LOGGED_USER_IDENTIFIER", jwtTokenProvider.getIdentifierFromToken(token)).build();
