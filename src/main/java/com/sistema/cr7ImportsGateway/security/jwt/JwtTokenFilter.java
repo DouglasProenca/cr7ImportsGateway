@@ -49,7 +49,8 @@ public class JwtTokenFilter implements GatewayFilter, Ordered {
 			}
 
 			final String token = exchange.getRequest().getHeaders().getOrEmpty(AUTHORIZATION_HEADER).get(0).replace("Bearer ", "");
-
+			System.out.println(token);
+			
 			try {
 				jwtTokenProvider.isValid(token);
 			} catch (Exception e) {
